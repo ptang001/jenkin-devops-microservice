@@ -1,6 +1,8 @@
 // DECLARATIVE
 pipeline {
-    agent any
+    agent {
+        docker { image 'maven:3.6.3-jdk-8' }
+    }
 
     environment {
 		// Environment variable identifiers need to be both valid bash variable
@@ -16,7 +18,7 @@ pipeline {
 	stages {
 		stage('Build') {
 			steps {
-				bat(/"${mvnHome}\bin\mvn" --version/)
+				bat 'mvn --version'
 				echo "Build"
 			}
 		}
