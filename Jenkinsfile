@@ -1,21 +1,17 @@
 // DECLARATIVE
 pipeline {
-        // agent defines where the pipeline will run.
-        agent {
-            // Here we define that we wish to run on the agent with the label SL202_win
-            label "SL202_win"
-        }
+    agent any
 
-        environment {
-            // Environment variable identifiers need to be both valid bash variable
-            // identifiers and valid Groovy variable identifiers. If you use an invalid
-            // identifier, you'll get an error at validation time.
-            // Right now, you can't do more complicated Groovy expressions or nesting of
-            // other env vars in environment variable values, but that will be possible
-            // when https://issues.jenkins-ci.org/browse/JENKINS-41748 is merged and
-            // released.
-            mvnHome = "C:/devel/apps/tools/apache-maven-3.6.3"
-        }
+    environment {
+		// Environment variable identifiers need to be both valid bash variable
+		// identifiers and valid Groovy variable identifiers. If you use an invalid
+		// identifier, you'll get an error at validation time.
+		// Right now, you can't do more complicated Groovy expressions or nesting of
+		// other env vars in environment variable values, but that will be possible
+		// when https://issues.jenkins-ci.org/browse/JENKINS-41748 is merged and
+		// released.
+		mvnHome = "C:/devel/apps/tools/apache-maven-3.6.3"
+    }
 
 	stages {
 		stage('Build') {
