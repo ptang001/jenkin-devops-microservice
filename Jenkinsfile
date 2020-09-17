@@ -1,24 +1,16 @@
 // DECLARATIVE
 pipeline {
     agent {
-        docker { image 'maven:3.6.3-jdk-8' }
-    }
-
-    environment {
-		// Environment variable identifiers need to be both valid bash variable
-		// identifiers and valid Groovy variable identifiers. If you use an invalid
-		// identifier, you'll get an error at validation time.
-		// Right now, you can't do more complicated Groovy expressions or nesting of
-		// other env vars in environment variable values, but that will be possible
-		// when https://issues.jenkins-ci.org/browse/JENKINS-41748 is merged and
-		// released.
-		mvnHome = "C:/devel/apps/tools/apache-maven-3.6.3"
+        docker {
+            image 'maven:3-alpine'
+            args '-v /root/.m2:/root/.m2'
+        }
     }
 
 	stages {
 		stage('Build') {
 			steps {
-				bat 'mvn --version'
+				sh 'mvn --version'
 				echo "Build"
 			}
 		}
